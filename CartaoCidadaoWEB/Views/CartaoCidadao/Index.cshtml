@@ -1,0 +1,60 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+       
+            function connect() {
+            var socket = new WebSocket('ws://localhost:8080/websession');
+            socket.onopen = function() {
+                alert('handshake successfully established. May send data now...');
+            socket.send("Hi there from browser.");
+         };
+         /*
+            socket.onmessage = function (evt) {
+                alert("About to receive data");
+            //var received_msg = evt.data;
+            var obj = JSON.parse(evt.data);
+              alert("Message received = "+obj.name);
+              //alert("Message received = "+received_msg);
+              document.getElementById("nome").innerHTML = obj.name;
+          };*/
+
+            socket.onmessage = function(evt){
+                // We use jQuery because life's too short for raw DOM scripting
+                var obj = JSON.parse(evt.data);
+                $('#nome').prepend(obj.name);
+                 $('#nif').prepend(obj.numNIF);
+            }
+            socket.onclose = function() {
+                alert('connection closed');
+            };
+        }
+    </script>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body style="font-size:xx-large">
+    <p>Index Cartao do Cidadao</p>
+    <br />
+    <div>
+        <a href="#" onclick="connect()">Click here to start</a>
+    </div>
+    <div>
+        <div>
+            <label for="nome">Nome:</label>
+            <output type="text" id="nome" />
+        </div>
+        <div>
+            <label for="nif">NIF:</label>
+            <output type="text" id="nif" />
+        </div>
+    </div>
+</body>
+</html>

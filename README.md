@@ -5,8 +5,8 @@ Leitura do Cartão do Cidadão através de uma página Web
 Requisitos: Instalação do SDK do cartão do cidadão. 
 
 Consiste em duas partes. 
--Uma aplicação consola em C# que tem que estar a correr na máquina do cliente. 
--A aplicação Web deverá estar a correr num servidor ou numa outra máquina. 
+Uma aplicação consola em C# que tem que estar a correr na máquina do cliente. 
+A aplicação Web deverá estar a correr num servidor ou numa outra máquina. 
 
 A aplicação que corre no servidor/maquina remota recomendo a instalação da extension no visual studio Conveyor by keyoti que vai abrir um porto para a página web ser acedida remotamente através do computador cliente. 
 

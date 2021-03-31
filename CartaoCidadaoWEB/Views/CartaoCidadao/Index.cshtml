@@ -16,22 +16,32 @@
                 alert('handshake successfully established. May send data now...');
             socket.send("Hi there from browser.");
          };
-         /*
-            socket.onmessage = function (evt) {
-                alert("About to receive data");
-            //var received_msg = evt.data;
-            var obj = JSON.parse(evt.data);
-              alert("Message received = "+obj.name);
-              //alert("Message received = "+received_msg);
-              document.getElementById("nome").innerHTML = obj.name;
-          };*/
+         
+          //      socket.onmessage = function (evt) {
+          //          //alert("About to receive data");
+          //          var received_msg = evt.data;
+          //          alert("Message received = " + received_msg);
+          //};
 
-            socket.onmessage = function(evt){
-                // We use jQuery because life's too short for raw DOM scripting
-                var obj = JSON.parse(evt.data);
-                $('#nome').prepend(obj.name);
-                 $('#nif').prepend(obj.numNIF);
-            }
+            // Limpar os Campos todos
+                $('#nome').val('');
+                $('#datanascimento').val('');
+                $('#datavalidade').val('');
+                $('#nif').val('');
+
+                socket.onmessage = function (evt) {
+
+                 
+                }
+
+            //socket.onmessage = function(evt){
+            //    // We use jQuery because life's too short for raw DOM scripting
+            //    var obj = JSON.parse(evt.data);
+            //    $('#nome').prepend(obj.nome);
+            //    $('#datanascimento').prepend(obj.dataNascimento);
+            //    $('#datavalidade').prepend(obj.ccValidade);
+            //     $('#nif').prepend(obj.numNIF);
+            //}
             socket.onclose = function() {
                 alert('connection closed');
             };
@@ -52,9 +62,20 @@
             <output type="text" id="nome" />
         </div>
         <div>
+            <label for="nif">Data Nascimento:</label>
+            <output type="text" id="datanascimento" />
+        </div>
+        <div>
+            <label for="nif">Data Validade:</label>
+            <output type="text" id="datavalidade" />
+        </div>
+        <div>
             <label for="nif">NIF:</label>
             <output type="text" id="nif" />
         </div>
+    </div>
+    <div>
+        <img id="img" width="400">
     </div>
 </body>
 </html>
